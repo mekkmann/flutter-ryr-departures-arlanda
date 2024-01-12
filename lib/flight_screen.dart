@@ -106,7 +106,6 @@ class _FlightScreenState extends State<FlightScreen> {
                 // This is called when the user changes the datetime.
                 onDateTimeChanged: (DateTime newTime) {
                   setState(() {
-                    //TODO: Make sure getData() only gets called when DATE is changed NOT TIME
                     selectedDateTime = newTime;
                     getData();
                   });

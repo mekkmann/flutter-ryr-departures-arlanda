@@ -18,10 +18,13 @@ class FlightHelper {
         headers: {
           'Accept': 'application/json',
           'Cache-Control': 'no-cache',
-          'Ocp-Apim-Subscription-Key': '<YOUR-KEY-HERE>'
+          'Ocp-Apim-Subscription-Key': 'YOUR-API-KEY-HERE'
         });
 
-    if (response.statusCode == 200) {
+    if (response.statusCode != 200) {
+      log('LOG - [ HTTP ERROR: ${response.statusCode} ]');
+      return;
+    } else {
       var decodedData = jsonDecode(response.body);
       var ryanFlights = [];
       for (var flight in decodedData['flights']) {
@@ -34,9 +37,6 @@ class FlightHelper {
         }
       }
       return ryanFlights;
-    } else {
-      log('LOG - [ HTTP GET ERROR: ${response.statusCode} ]');
-      return;
     }
   }
 }
